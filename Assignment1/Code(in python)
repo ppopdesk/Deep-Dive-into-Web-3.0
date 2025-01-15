@@ -1,0 +1,21 @@
+import hashlib
+from datetime import datetime
+s=datetime.now()
+# aa=hashlib.sha256("IITK438251".encode('utf-8')).hexdigest()
+# print(int(aa,16),'\n')
+target=int("00000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF",16)
+# print(target)
+original=input("Enter the string :")
+hs = hashlib.sha256(original.encode('utf-8')).hexdigest()
+temp=int(hs,16)
+i=0
+while temp >= target :
+    zzz=str(i)
+    strcopy=original+zzz
+    hs=hashlib.sha256(strcopy.encode('utf-8')).hexdigest()
+    temp=int(hs,16)
+    i=i+1
+original=original+str(i-1)
+e=datetime.now()
+print("The number is : ",i-1,"\nwith the required string being ->",original,"<-")
+print("time elapsed: ",e-s)
